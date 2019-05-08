@@ -1,8 +1,8 @@
 # javascript
 Assessment to make primary skill as javascript
 
-TabBar.html
-A component that adjusts itself based on the device it gets loaded.
+TabBar.html,
+A component that adjusts itself based on the device configuration.
 
 1. Media quesries to identify device config.
 2. A Single component for multi devices.
