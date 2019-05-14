@@ -1,0 +1,75 @@
+
+html, body {
+     width: 100%;
+     height: 100%;
+     margin: 0px;
+}
+ .accordion {
+     background-color: #eee;
+     color: #444;
+     cursor: pointer;
+     padding: 18px;
+     border: none;
+     text-align: left;
+     outline: none;
+     font-size: 15px;
+     transition: 0.4s;
+}
+ .active {
+     background-color: #aaa;
+}
+ p {
+     padding-left: 18px;
+}
+ footer 
+ {
+	width: auto;
+	p{
+		 margin-top: 5px;
+		 margin-bottom: 5px;
+	}
+}
+ .panel {
+     display: none;
+     background-color: white;
+     overflow: hidden;
+     width:100%;
+}
+ .show{
+     display: block;
+}
+ #lable{
+     height: 15px;
+     width:100%;
+}
+/* Media Query for Mobile screeens */
+ @media screen and (max-width: 501px){
+     .accordion {
+         width: 100%;
+    }
+     .wrapper{
+         height: 85%;
+         width: 100%;
+    }
+     footer{
+         height:8%;
+         backgroud-color: #aaa;
+    }
+}
+/* Media Query for Wide screeens */
+ @media screen and (min-width: 502px){
+     .accordion {
+         width: 100px;
+    }
+     .panel {
+         height: 80%;
+    }
+     .wrapper {
+         width: 100%;
+         background-color: #eee;
+    }
+     footer{
+         height:9%;
+         backgroud-color: #aaa;
+    }
+}
