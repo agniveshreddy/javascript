@@ -1,0 +1,41 @@
+:root {
+  --acc-height: 53px;
+  --child-count: 3;
+  --wide-footer-height: 60px;
+  --mobile-footer-height: 40px;
+}
+
+html, body {
+     width: 100%;
+     height: 100%;
+     margin: 0px;
+}
+.wrapper {
+         width: 100%;
+         background-color: #eee;
+    }
+.accordion {
+     background-color: #eee;
+     color: #444;
+     cursor: pointer;
+     border: none;
+     outline: none;
+     font-size: 15px;
+     transition: 0.4s;
+	 height: var(--acc-height);
+	 width: 100px;
+	 text-align: center;
+}
+.active {
+     background-color: #aaa;
+}
+ .panel {
+     display: none;
+     background-color: white;
+     overflow: hidden;
+     width:100%;
+	 
+}
+.show {
+	display: block;
+}
