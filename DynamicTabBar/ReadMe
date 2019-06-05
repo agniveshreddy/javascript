@@ -1,1 +1,6 @@
-A readme File
+
+Features explored with this task:
+-> Es6 Classes: To add robustness to javascripting language.
+-> WeakMap: To maintain Private objects and loose references for better performance.
+-> Symbols: To maintain unique keys and to maintain enumerability of properties.
+-> QuerySelector: To extend the power of selectors rather than simple getElementById/class
