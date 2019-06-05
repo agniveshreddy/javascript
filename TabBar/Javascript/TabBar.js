@@ -10,6 +10,18 @@ const sections = [...document.getElementsByClassName("panel")];
 const wrapper = document.getElementsByClassName("wrapper")[INITIAL_INDEX];
 const footer = document.getElementsByTagName("footer")[INITIAL_INDEX];
 
+document.body.addEventListener('onresize', onResize);
+screenW = document.documentElement.clientWidth || document.body.clientWidth || window.innerWidth;
+screenH = document.documentElement.clientHeight || document.body.clientHeight || window.innereight;
+if(screenW < targetWidth && screenH < targetHeight){
+	currentLayout = PORTABLE_SCREEN;
+	setConfigForPortableScreen();
+}
+else{
+	currentLayout = WIDE_SCREEN;
+	setConfigForWideScreen();
+}
+
 function onResize(){
 	screenW = document.documentElement.clientWidth || document.body.clientWidth || window.innerWidth;
 	screenH = document.documentElement.clientHeight || document.body.clientHeight || window.innereight;
@@ -22,17 +34,7 @@ function onResize(){
 	switchLayouts();
 }
 function onLoad(){
-	document.body.addEventListener('onresize', onResize);
-	screenW = document.documentElement.clientWidth || document.body.clientWidth || window.innerWidth;
-	screenH = document.documentElement.clientHeight || document.body.clientHeight || window.innereight;
-	if(screenW < targetWidth && screenH < targetHeight){
-		currentLayout = PORTABLE_SCREEN;
-		setConfigForPortableScreen();
-	}
-	else{
-		currentLayout = WIDE_SCREEN;
-		setConfigForWideScreen();
-	}
+	
 }
 
 function switchLayouts(){
