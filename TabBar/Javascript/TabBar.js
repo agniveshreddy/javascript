@@ -6,7 +6,7 @@ const INITIAL_INDEX = 0;
 const PORTABLE_SCREEN = "portable";
 const WIDE_SCREEN = "wide";
 const accordions = [...document.getElementsByClassName("accordion")];
-const panels = [...document.getElementsByClassName("panel")];
+const sections = [...document.getElementsByClassName("panel")];
 const wrapper = document.getElementsByClassName("wrapper")[INITIAL_INDEX];
 const footer = document.getElementsByTagName("footer")[INITIAL_INDEX];
 
@@ -22,6 +22,7 @@ function onResize(){
 	switchLayouts();
 }
 function onLoad(){
+	document.body.addEventListener('onresize', onResize);
 	screenW = document.documentElement.clientWidth || document.body.clientWidth || window.innerWidth;
 	screenH = document.documentElement.clientHeight || document.body.clientHeight || window.innereight;
 	if(screenW < targetWidth && screenH < targetHeight){
@@ -44,24 +45,20 @@ function switchLayouts(){
 }
 
 function setConfigForPortableScreen(){
-	/**** set height for each panel suitable for portable screen mode ****/
-	panels.forEach(panel => { 
-		panel.style.height = (wrapper.clientHeight - (accordions.length * accordions[INITIAL_INDEX].clientHeight)) + "px";
-	});
-	/****  ****/
-	/**** Show first Panel initially ****/
-	const initialIndexFromLocalStorage = window.localStorage.getItem('panelIndex');
+
+	/**** Show first section initially ****/
+	const initialIndexFromLocalStorage = localStorage.getItem('sectionIndex');
 	const accToActivate = initialIndexFromLocalStorage ? accordions[initialIndexFromLocalStorage]: accordions[INITIAL_INDEX];
 	accToActivate.classList.add("active");
-	appendPanel(wrapper,panels,accordions, initialIndexFromLocalStorage? initialIndexFromLocalStorage: INITIAL_INDEX);
+	appendSection(wrapper,sections,accordions, initialIndexFromLocalStorage? initialIndexFromLocalStorage: INITIAL_INDEX);
 	/****  ****/
 	
 	accordions.forEach( (accTab, index) =>{
 		/**** Adding event listener for each tab ****/
 		accTab.addEventListener("click", function() {
 			activateAccordion(accordions, this);
-			appendPanel(wrapper,panels,accordions,index);
-			window.localStorage.setItem('panelIndex', index);
+			appendSection(wrapper,sections,accordions,index);
+			localStorage.setItem('sectionIndex', index);
 		});
 		/****  ****/
 	});
@@ -69,16 +66,11 @@ function setConfigForPortableScreen(){
 }
 
 function setConfigForWideScreen(){
-	/**** set height for each panel suitable for wide screen mode ****/
-	panels.forEach(panel => {
-		panel.style.height = (document.body.clientHeight - accordions[INITIAL_INDEX].clientHeight - footer.clientHeight -10) + "px";
-	});
-	/****  ****/
 
-	/**** Show first Panel initially ****/
-	const initialIndexFromLocalStorage = window.localStorage.getItem('panelIndex');
-	const firstPanel = initialIndexFromLocalStorage ? panels[initialIndexFromLocalStorage]: panels[INITIAL_INDEX];
-	firstPanel.classList.add("show");
+	/**** Show first section initially ****/
+	const initialIndexFromLocalStorage = localStorage.getItem('sectionIndex');
+	const firstSection = initialIndexFromLocalStorage ? sections[initialIndexFromLocalStorage]: sections[INITIAL_INDEX];
+	firstSection.classList.add("show");
 	const accToActivate = initialIndexFromLocalStorage ? accordions[initialIndexFromLocalStorage]: accordions[INITIAL_INDEX];
 	accToActivate.classList.add("active");
 	/****  ****/
@@ -87,12 +79,12 @@ function setConfigForWideScreen(){
 	/**** Adding event listener for each tab ****/
 		accTab.addEventListener("click", function() {
 			activateAccordion(accordions, this);
-			const activePanel = panels.find(panel => panel.classList.contains("show"));
-			if(activePanel)
-				activePanel.classList.remove("show");
-			const panelToShow = panels[index];
-			panelToShow.classList.add("show");
-			window.localStorage.setItem('panelIndex', index);
+			const activeSection = sections.find(section => section.classList.contains("show"));
+			if(activeSection)
+				activeSection.classList.remove("show");
+			const sectionToShow = sections[index];
+			sectionToShow.classList.add("show");
+			localStorage.setItem('sectionIndex', index);
 	
 		});
 	/****  ****/
@@ -107,13 +99,13 @@ function activateAccordion(accordions, currentaccTab) {
 	currentaccTab.classList.add("active");
 }
 
-function appendPanel(wrapper,panels,accordions,index){
-	const activePanel = panels.find(panel => panel.classList.contains("show"));
-	if(activePanel){
-		activePanel.classList.remove("show");
-		activePanel.remove();
+function appendSection(wrapper,sections,accordions,index){
+	const activeSection = sections.find(section => section.classList.contains("show"));
+	if(activeSection){
+		activeSection.classList.remove("show");
+		activeSection.remove();
 	}
-    const panelToAppend = panels[index];
-	panelToAppend.classList.add("show");
-	wrapper.insertBefore(panelToAppend, accordions[Number(index)+1]);
+    const sectionToAppend = sections[index];
+	sectionToAppend.classList.add("show");
+	wrapper.insertBefore(sectionToAppend, accordions[Number(index)+1]);
 }
