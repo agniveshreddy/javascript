@@ -1,39 +1,47 @@
 
+:root {
+  --acc-height: 53px;
+  --child-count: 3;
+  --wide-footer-height: 60px;
+  --mobile-footer-height: 40px;
+}
+
 html, body {
      width: 100%;
      height: 100%;
      margin: 0px;
 }
- .accordion {
+.accordion {
      background-color: #eee;
      color: #444;
      cursor: pointer;
-     padding: 18px;
      border: none;
-     text-align: left;
      outline: none;
      font-size: 15px;
      transition: 0.4s;
+	 height: var(--acc-height);
 }
- .active {
+.active {
      background-color: #aaa;
 }
- p {
+p {
      padding-left: 18px;
 }
- footer 
- {
+footer 
+{
 	width: auto;
-	p{
-		 margin-top: 5px;
-		 margin-bottom: 5px;
-	}
+	padding-left: 5px;
 }
+footer p{
+		 margin: 0px;
+		 padding-top: 4px;
+	}
  .panel {
      display: none;
      background-color: white;
      overflow: hidden;
      width:100%;
+	 
 }
  .show{
      display: block;
@@ -42,17 +50,35 @@ html, body {
      height: 15px;
      width:100%;
 }
+article{
+	background-color: #DDE7FF;
+	padding-top:5px;
+	padding-bottom:5px;
+	margin: 15px;
+	max-width:550px;
+	box-sizing: border-box;
+	
+}
+.box-demo{
+		padding: 25px;
+		
+	}
 /* Media Query for Mobile screeens */
  @media screen and (max-width: 501px){
      .accordion {
          width: 100%;
+		 text-align: left;
+		 padding-left: 18px;
+    }
+	.panel {
+         height: calc(100% - 110px - 50px);
     }
      .wrapper{
          height: 85%;
          width: 100%;
     }
      footer{
-         height:8%;
+         height:var(--mobile-footer-height);
          backgroud-color: #aaa;
     }
 }
@@ -60,16 +86,17 @@ html, body {
  @media screen and (min-width: 502px){
      .accordion {
          width: 100px;
+		 text-align: center;
     }
      .panel {
-         height: 80%;
+         height: calc(100% - 53px - 60px - 10px);
     }
      .wrapper {
          width: 100%;
          background-color: #eee;
     }
      footer{
-         height:9%;
+         height:var(--wide-footer-height);
          backgroud-color: #aaa;
     }
 }
